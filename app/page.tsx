@@ -1,65 +1,172 @@
-import Image from "next/image";
+"use client";
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <main className="min-h-screen bg-white text-gray-800">
+
+      {/* HEADER */}
+      <header className="sticky top-0 z-50 bg-white shadow-md">
+  <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+
+    <h1 className="text-xl font-bold text-blue-700">
+      Sree Vel Murugan Hardware And Tiles
+    </h1>
+
+    <nav className="flex items-center gap-6 font-medium text-gray-700">
+      <Link href="/">Home</Link>
+      <Link href="/shop">Shop</Link>
+      <Link href="/categories">Categories</Link>
+      <Link href="/contact">Contact</Link>
+
+      {/* CART BUTTON */}
+      <Link
+        href="/cart"
+        className="ml-4 bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
+      >
+        🛒 Cart
+      </Link>
+    </nav>
+
+  </div>
+</header>
+
+
+
+      {/* HERO – POSTER STYLE */}
+      <section className="bg-white py-20">
+        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+
+          {/* LEFT CONTENT */}
+          <div>
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-red-600 border border-red-200 px-4 py-1 rounded-full mb-6">
+              🏅 Authorized Dealer
+            </span>
+
+            <h1 className="text-5xl font-extrabold leading-tight mb-6">
+              <span className="text-yellow-500">SREE VEL MURUGAN</span><br />
+              <span className="text-red-700">HARDWARE & TILES</span>
+            </h1>
+
+            <p className="text-lg text-gray-700 mb-4">
+              Hardware • Tiles • Sanitaryware • Pipes & Fittings
+            </p>
+
+            <p className="flex items-center gap-2 text-gray-600 mb-8">
+              📍 Premium Showroom in Porur, Chennai
+            </p>
+
+            <div className="flex flex-col gap-4 max-w-sm">
+              <a
+                href="tel:7305274926"
+                className="flex justify-between items-center bg-red-600 text-white px-6 py-4 rounded-xl text-lg font-semibold shadow-lg hover:bg-red-700 transition"
+              >
+                📞 Call Us Now
+                <span>73052 74926</span>
+              </a>
+
+              <a
+                href="tel:9840461152"
+                className="flex justify-between items-center border-2 border-red-600 text-red-700 px-6 py-4 rounded-xl text-lg font-semibold hover:bg-red-50 transition"
+              >
+                ☎ Alternate Number
+                <span>98404 61152</span>
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT IMAGE */}
+          <div className="flex justify-center">
+            <img
+              src="/hero-banner.jpeg"
+              alt="Sree Vel Murugan Hardware and Tiles"
+              className="w-full max-w-md rounded-3xl shadow-2xl"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+
         </div>
-      </main>
+      </section>
+
+      {/* TRUSTED BRANDS */}
+      <section className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <p className="text-center text-gray-500 mb-8">
+            Trusted brands we deal with
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center text-lg font-semibold text-gray-600">
+            <div>Parryware</div>
+            <div>Finolex</div>
+            <div>Jaguar</div>
+            <div>Supreme</div>
+            <div>KAG</div>
+          </div>
+        </div>
+      </section>
+      {/* CATEGORIES */}
+<section className="py-24 bg-white">
+  <div className="max-w-7xl mx-auto px-6">
+    <h3 className="text-3xl font-bold text-center text-blue-800 mb-14">
+      Shop by Category
+    </h3>
+
+    <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 justify-items-center">
+      {[
+        { title: "Sanitaryware", img: "/Sanitary.jpeg", slug: "sanitaryware" },
+        { title: "Pipes & Fittings", img: "/pipes.png", slug: "pipes" },
+        { title: "Tiles", img: "/tiles.jpeg", slug: "tiles" },
+        {
+          title: "Bathroom Accessories",
+          img: "/BathroomAccessories.png",
+          slug: "bathroom-accessories",
+        },
+      ].map((cat, i) => (
+        <Link href={`/category/${cat.slug}`} key={i}>
+          <motion.div
+            whileHover={{ y: -10 }}
+            className="w-full max-w-[220px] h-[320px] rounded-2xl overflow-hidden shadow-lg cursor-pointer group flex flex-col"
+          >
+            <div className="h-48 overflow-hidden flex-shrink-0">
+              <img
+                src={cat.img}
+                alt={cat.title}
+                className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
+              />
+            </div>
+
+              <div className="p-5 text-center bg-gray-50 flex-1 flex items-center justify-center">
+              <h4 className="font-semibold text-lg text-gray-800">
+                {cat.title}
+              </h4>
+            </div>
+          </motion.div>
+        </Link>
+      ))}
     </div>
+  </div>
+</section>
+
+
+      {/* FOOTER */}
+      <footer className="bg-blue-900 text-white py-16 text-center text-lg">
+        © Sree Vel Murugan Hardware & Tiles – Porur, Chennai
+      </footer>
+      
+      {/* WHATSAPP FLOATING BUTTON */}
+<a
+  href="https://wa.me/917305274926"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-6 right-6 z-50"
+>
+  <img
+    src="/whatsapp.png"
+    alt="Chat on WhatsApp"
+    className="w-16 h-16 rounded-full shadow-[0_0_30px_rgba(37,211,102,0.9)] hover:scale-110 transition"
+  />
+</a>
+
+
+    </main>
   );
 }
