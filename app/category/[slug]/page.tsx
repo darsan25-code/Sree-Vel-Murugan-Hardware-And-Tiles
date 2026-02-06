@@ -438,7 +438,8 @@ const slug =
   typeof params.slug === "string" ? params.slug : params.slug?.[0] ?? "";
 
   const router = useRouter();
-  const { addToCart } = useCart();
+const { addToCart, cartItems } = useCart();
+  const [toast, setToast] = useState<string | null>(null);
     const [search, setSearch] = useState("");
   const [activeType, setActiveType] =
   useState<"all" | "closet" | "washbasin">("all");
@@ -466,8 +467,25 @@ const slug =
   .sort((a, b) => a.name.localeCompare(b.name));
 
 
-  return (
-    <main className="min-h-screen bg-white">
+ return (
+  <>
+    {toast && (
+      <div className="fixed top-6 right-6 z-50 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg">
+        ✅ {toast}
+      </div>
+    )}
+
+<main className="min-h-screen bg-white">
+
+  {/* TOAST MESSAGE */}
+  {toast && (
+    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50
+                    bg-green-100 text-green-800 px-6 py-3
+                    rounded-xl shadow-lg flex items-center gap-2">
+      ✅ {toast}
+    </div>
+  )}
+
 
       {/* ================= TOP BAR ================= */}
       <div className="bg-gradient-to-br from-black via-gray-900 to-black py-10">
@@ -483,11 +501,27 @@ const slug =
 
           {/* RIGHT : CART */}
           <Link
-            href="/cart"
-            className="flex items-center gap-2 bg-gray-800 text-white px-6 py-3 rounded-full border border-white/20 hover:bg-gray-700 transition"
-          >
-            🛒 Cart
-          </Link>
+  href="/cart"
+  className="relative flex items-center gap-2
+             bg-gray-800 text-white px-6 py-3
+             rounded-full border border-white/20
+             hover:bg-gray-700 transition"
+>
+  🛒 Cart
+
+  {cartItems.length > 0 && (
+    <span
+      className="absolute -top-2 -right-2
+                 bg-red-600 text-white
+                 text-xs w-6 h-6
+                 flex items-center justify-center
+                 rounded-full font-bold"
+    >
+      {cartItems.length}
+    </span>
+  )}
+</Link>
+
         </div>
 
         {/* TITLE */}
@@ -589,16 +623,26 @@ key={`${product.type}-${product.id}`}
 
               {/* BUTTONS */}
               <div className="flex gap-4">
-                <Link
-                  href={`/product/${product.id}`}
-                  className="flex-1 text-center bg-red-600 py-3 rounded-full hover:bg-red-700 transition"
-                >
-                  View Product
-                </Link>
+                <button
+  onClick={() => {
+    addToCart(product);      // 1️⃣ add to cart
+    router.push("/cart");   // 2️⃣ go to cart
+  }}
+  className="flex-1 text-center bg-red-600 py-3 rounded-full
+             hover:bg-red-700 transition font-semibold"
+>
+  Buy Now
+</button>
 
                 <button
-                  onClick={() => addToCart(product)}
-                  className="flex-1 bg-gray-600 py-3 rounded-full hover:bg-gray-500 transition"
+                  onClick={() => {
+  addToCart(product);
+  setToast(`${product.name} added to cart`);
+  setTimeout(() => setToast(null), 2500);
+}}
+className="flex-1 bg-gradient-to-r from-red-600 to-red-500
+           py-3 rounded-full hover:from-red-700 hover:to-red-600
+           transition font-semibold shadow-lg"
                 >
                   Add to Cart
                 </button>
@@ -608,6 +652,8 @@ key={`${product.type}-${product.id}`}
 
         </div>
       </section>
-    </main>
-  );
+        </main>
+  </>
+);
 }
+
