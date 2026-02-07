@@ -263,171 +263,235 @@ const PRODUCTS: Record<string, any[]> = {
     {
   id: "washbasin-1",
   name: "Rombi",
-  price: 1500,
+  price: 5292,
   img: "/products/Rombi.png",
   type: "washbasin",
 },
     {
   id: "washbasin-2",
   name: "Imperial Neo 600 C8916",
-  price: 1500,
+  price: 4678,
   img: "/products/Imperial1.png",
   type: "washbasin",
 },
     {
   id: "washbasin-3",
   name: "Imperial Neo 600 C8915",
-  price: 1500,
+  price: 4602,
   img: "/products/Imperial2.png",
   type: "washbasin",
 },
 {
   id: "washbasin-4",
   name: "Quad 560",
-  price: 1500,
+  price: 4371,
   img: "/products/Quad560.png",
   type: "washbasin",
 },
 {
   id: "washbasin-5",
   name: "Refine",
-  price: 1500,
+  price: 4371,
   img: "/products/Refine.png",
   type: "washbasin",
 },
 {
   id: "washbasin-6",
   name: "Camry",
-  price: 1500,
+  price: 4218,
   img: "/products/Camry.png",
   type: "washbasin",
 },
 {
   id: "washbasin-7",
   name: "Imperial Neo 500 C8914",
-  price: 1500,
+  price: 4295,
   img: "/products/Imperial3.png",
   type: "washbasin",
 },
 {
   id: "washbasin-8",
   name: "Imperial Neo 500 C8913",
-  price: 1500,
+  price: 4218,
   img: "/products/Imperial4.png",
   type: "washbasin",
 },
 {
   id: "washbasin-9",
   name: "Zest Plus",
-  price: 1500,
+  price: 4065,
   img: "/products/ZestPlus.png",
   type: "washbasin",
 },
 {
   id: "washbasin-10",
   name: "Vibgyor",
-  price: 1500,
+  price: 4065,
   img: "/products/Vibgyor.png",
   type: "washbasin",
 },
 {
   id: "washbasin-11",
   name: "Jordon",
-  price: 1500,
+  price: 3911,
   img: "/products/Jordon.png",
   type: "washbasin",
 },
 {
   id: "washbasin-12",
   name: "Pearl",
-  price: 1500,
+  price: 4387,
   img: "/products/Pearl.png",
   type: "washbasin",
 },
 {
   id: "washbasin-13",
   name: "Pristine IV",
-  price: 1500,
+  price: 3451,
   img: "/products/PristineIV.png",
   type: "washbasin",
 },
 {
   id: "washbasin-14",
   name: "Luxe",
-  price: 1500,
+  price: 3451,
   img: "/products/Luxe.png",
   type: "washbasin",
 },
 {
   id: "washbasin-15",
   name: "Elegance",
-  price: 1500,
+  price: 3298,
   img: "/products/Elegance.png",
   type: "washbasin",
 },
 {
   id: "washbasin-16",
   name: "Flair",
-  price: 1500,
+  price: 3144,
   img: "/products/Flair.png",
   type: "washbasin",
 },
 {
   id: "washbasin-17",
   name: "Cascade NXT",
-  price: 1500,
+  price: 2914,
   img: "/products/Cascade.png",
   type: "washbasin",
 },
 {
   id: "washbasin-18",
   name: "Clara",
-  price: 1500,
+  price: 2914,
   img: "/products/Clara.png",
   type: "washbasin",
 },
 {
   id: "washbasin-19",
   name: "Resolute Neo",
-  price: 1500,
+  price: 2684,
   img: "/products/Resolute.png",
   type: "washbasin",
 },
 {
   id: "washbasin-20",
   name: "Imperial Neo 400 C8912",
-  price: 1500,
+  price: 2301,
   img: "/products/Imperial5.png",
   type: "washbasin",
 },
 {
   id: "washbasin-21",
   name: "Imperial Neo 400 C89I1",
-  price: 1500,
+  price: 2224,
   img: "/products/Imperial6.png",
   type: "washbasin",
 },
 {
   id: "washbasin-22",
   name: "Aqua",
-  price: 1500,
+  price: 2224,
   img: "/products/Aqua.png",
   type: "washbasin",
 },
 {
   id: "washbasin-23",
   name: "Vallure",
-  price: 1500,
+  price: 1840,
   img: "/products/Vallure.png",
   type: "washbasin",
 },
 {
   id: "washbasin-24",
   name: "Royal",
-  price: 1500,
+  price: 1150,
   img: "/products/Royal.png",
   type: "washbasin",
 },
+{
+  id: "urinal-1",
+  name: "Integrated N",
+  price: 15531,
+  img: "/products/Integrated.png",
+  type: "urinal",
+},
+{
+  id: "urinal-2",
+  name: "Sensurn",
+  price: 11159,
+  img: "/products/Sensurn.png",
+  type: "urinal",
+},
+{
+  id: "urinal-3",
+  name: "Craft",
+  price: 8437,
+  img: "/products/Craft.png",
+  type: "urinal",
+},
+{
+  id: "urinal-4",
+  name: "Whiz",
+  price: 7163,
+  img: "/products/Whiz.png",
+  type: "urinal",
+},
+{
+  id: "urinal-5",
+  name: "New Magnum",
+  price: 5905,
+  img: "/products/New.png",
+  type: "urinal",
+},
+{
+  id: "urinal-6",
+  name: "Luna",
+  price: 2147,
+  img: "/products/Luna.png",
+  type: "urinal",
+},
+{
+  id: "urinal-7",
+  name: "Niagara N",
+  price: 2108,
+  img: "/products/Niagara.png",
+  type: "urinal",
+},
+{
+  id: "urinal-8",
+  name: "Flat Back Urinal",
+  price: 1725,
+  img: "/products/Flat.png",
+  type: "urinal",
+},
+{
+  id: "urinal-9",
+  name: "Squatting",
+  price: 2031,
+  img: "/products/Squatting.png",
+  type: "urinal",
+},
+
 
   ],
 };
@@ -442,8 +506,35 @@ const { addToCart, cartItems } = useCart();
   const [toast, setToast] = useState<string | null>(null);
     const [search, setSearch] = useState("");
   const [activeType, setActiveType] =
-  useState<"all" | "closet" | "washbasin">("all");
+  useState<"all" | "closet" | "washbasin" | "urinal">("all");
+
   const [priceFilter, setPriceFilter] = useState("all");
+
+  // ✅ PRICE FILTER OPTIONS BASED ON CATEGORY
+const PRICE_OPTIONS: Record<
+  "closet" | "washbasin" | "urinal",
+  { value: string; label: string }[]
+> = {
+  closet: [
+    { value: "all", label: "All Prices" },
+    { value: "below9500", label: "Below ₹9,500" },
+    { value: "9500to13000", label: "₹9,500 – ₹13,000" },
+    { value: "above13000", label: "Above ₹13,000" },
+  ],
+  washbasin: [
+    { value: "all", label: "All Prices" },
+    { value: "below2000", label: "Below ₹2,000" },
+    { value: "2000to5000", label: "₹2,000 – ₹5,000" },
+    { value: "above5000", label: "Above ₹5,000" },
+  ],
+  urinal: [
+    { value: "all", label: "All Prices" },
+    { value: "below3000", label: "Below ₹3,000" },
+    { value: "3000to6000", label: "₹3,000 – ₹6,000" },
+    { value: "above6000", label: "Above ₹6,000" },
+  ],
+};
+
 
 
   const products = PRODUCTS[slug as string] || [];
@@ -457,11 +548,29 @@ const { addToCart, cartItems } = useCart();
       activeType === "all" || product.type === activeType;
 
     let matchPrice = true;
-    if (priceFilter === "below9500") matchPrice = product.price < 9500;
-    if (priceFilter === "9500to13000")
-      matchPrice = product.price >= 9500 && product.price <= 13000;
-    if (priceFilter === "above13000") matchPrice = product.price > 13000;
+    // 🟥 Closet price filter
+if (activeType === "closet") {
+  if (priceFilter === "below9500") matchPrice = product.price < 9500;
+  if (priceFilter === "9500to13000")
+    matchPrice = product.price >= 9500 && product.price <= 13000;
+  if (priceFilter === "above13000") matchPrice = product.price > 13000;
+}
 
+// 🟩 Wash Basin price filter
+if (activeType === "washbasin") {
+  if (priceFilter === "below2000") matchPrice = product.price < 2000;
+  if (priceFilter === "2000to5000")
+    matchPrice = product.price >= 2000 && product.price <= 5000;
+  if (priceFilter === "above5000") matchPrice = product.price > 5000;
+}
+
+// 🟦 Urinal price filter
+if (activeType === "urinal") {
+  if (priceFilter === "below3000") matchPrice = product.price < 3000;
+  if (priceFilter === "3000to6000")
+    matchPrice = product.price >= 3000 && product.price <= 6000;
+  if (priceFilter === "above6000") matchPrice = product.price > 6000;
+}
     return matchSearch && matchType && matchPrice;
   })
   .sort((a, b) => a.name.localeCompare(b.name));
@@ -470,10 +579,13 @@ const { addToCart, cartItems } = useCart();
  return (
   <>
     {toast && (
-      <div className="fixed top-6 right-6 z-50 bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg">
-        ✅ {toast}
-      </div>
-    )}
+  <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50
+                  bg-green-100 text-green-800 px-6 py-3
+                  rounded-xl shadow-lg flex items-center gap-2">
+    ✅ {toast}
+  </div>
+)}
+
 
 <main className="min-h-screen bg-white">
 
@@ -549,15 +661,41 @@ const { addToCart, cartItems } = useCart();
 
     {/* PRICE FILTER */}
     <select
-      value={priceFilter}
-      onChange={(e) => setPriceFilter(e.target.value)}
-      className="px-6 py-4 rounded-xl bg-gray-600 text-white outline-none"
-    >
-      <option value="all">All Prices</option>
-      <option value="below9500">Below ₹9500</option>
-      <option value="9500to13000">₹9500 – ₹13000</option>
-      <option value="above13000">Above ₹13000</option>
-    </select>
+  value={priceFilter}
+  onChange={(e) => setPriceFilter(e.target.value)}
+  className="px-6 py-4 rounded-xl bg-gray-600 text-white outline-none"
+>
+  <option value="all">All Prices</option>
+
+  {/* 🟥 Closets */}
+  {activeType === "closet" && (
+    <>
+      <option value="below9500">Below ₹9,500</option>
+      <option value="9500to13000">₹9,500 – ₹13,000</option>
+      <option value="above13000">Above ₹13,000</option>
+    </>
+  )}
+
+  {/* 🟩 Wash Basins */}
+  {activeType === "washbasin" && (
+    <>
+      <option value="below2000">Below ₹2,000</option>
+      <option value="2000to5000">₹2,000 – ₹5,000</option>
+      <option value="above5000">Above ₹5,000</option>
+    </>
+  )}
+
+  {/* 🟦 Urinals */}
+  {activeType === "urinal" && (
+    <>
+      <option value="below3000">Below ₹3,000</option>
+      <option value="3000to6000">₹3,000 – ₹6,000</option>
+      <option value="above6000">Above ₹6,000</option>
+    </>
+  )}
+</select>
+
+
 
   </div>
 </div>
@@ -565,27 +703,45 @@ const { addToCart, cartItems } = useCart();
 {/* CATEGORY TABS */}
 <div className="flex justify-center gap-4 mb-16">
   <button
-    onClick={() => setActiveType("closet")}
+    onClick={() => {
+      setActiveType("closet");
+      setPriceFilter("all");
+    }}
     className={`px-8 py-3 rounded-xl font-semibold transition ${
       activeType === "closet"
         ? "bg-red-600 text-white shadow-lg"
         : "bg-gray-200 text-gray-700 hover:bg-gray-300"
     }`}
   >
-    Closets (
-    {products.filter((p) => p.type === "closet").length})
+    Closets ({products.filter((p) => p.type === "closet").length})
   </button>
 
   <button
-    onClick={() => setActiveType("washbasin")}
+    onClick={() => {
+      setActiveType("washbasin");
+      setPriceFilter("all");
+    }}
     className={`px-8 py-3 rounded-xl font-semibold transition ${
       activeType === "washbasin"
         ? "bg-red-600 text-white shadow-lg"
         : "bg-gray-200 text-gray-700 hover:bg-gray-300"
     }`}
   >
-    Wash Basins (
-    {products.filter((p) => p.type === "washbasin").length})
+    Wash Basins ({products.filter((p) => p.type === "washbasin").length})
+  </button>
+
+  <button
+    onClick={() => {
+      setActiveType("urinal");
+      setPriceFilter("all");
+    }}
+    className={`px-8 py-3 rounded-xl font-semibold transition ${
+      activeType === "urinal"
+        ? "bg-red-600 text-white shadow-lg"
+        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+    }`}
+  >
+    Urinals ({products.filter((p) => p.type === "urinal").length})
   </button>
 </div>
 
