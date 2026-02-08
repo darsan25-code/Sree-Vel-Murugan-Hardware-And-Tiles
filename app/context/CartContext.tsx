@@ -6,6 +6,7 @@ type CartItem = {
   name: string;
   price: number;
   img: string;
+  type: "closet" | "washbasin" | "urinal";
   quantity: number;
 };
 
