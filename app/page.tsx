@@ -7,7 +7,7 @@ export default function Home() {
     <main className="min-h-screen bg-white text-gray-800">
 
       {/* HERO – POSTER STYLE */}
-      <section className="bg-white py-20">
+      <section id="home" className="bg-white py-20">
         <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
 
           {/* LEFT CONTENT */}
@@ -115,6 +115,31 @@ export default function Home() {
         </Link>
       ))}
     </div>
+  </div>
+</section>
+
+
+{/* CONTACT SECTION */}
+<section
+  id="contact"
+  className="py-24 bg-white scroll-mt-28"
+>
+  <div className="max-w-4xl mx-auto px-6 text-center">
+
+    <h3 className="text-3xl font-bold text-blue-800 mb-8">
+      Contact Us
+    </h3>
+
+    <p className="text-gray-700 mb-6">
+      Visit our showroom or call us for best quality hardware & tiles.
+    </p>
+
+    <div className="space-y-4 text-lg">
+      <p>📍 No.143, Kundrathur Main Road, Porur, Chennai – 600116</p>
+      <p>📞 <a href="tel:7305274926" className="text-red-600 font-semibold">73052 74926</a></p>
+      <p>☎ <a href="tel:9840461152" className="text-red-600 font-semibold">98404 61152</a></p>
+    </div>
+
   </div>
 </section>
 
