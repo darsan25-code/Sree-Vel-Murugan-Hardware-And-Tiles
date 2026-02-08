@@ -11,12 +11,12 @@ export default function ProductPage() {
 
   // 🔴 Temporary product (later real data connect pannalaam)
   const product = {
-    id,
-    name: "Product Name",
-    price: 0,
-    img: "/placeholder.png",
-    type: "closet", // ✅ IMPORTANT
-  };
+  id: id as string,
+  name: "Product Name",
+  price: 0,
+  img: "/placeholder.png",
+  type: "closet" as const, 
+};
 
   return (
     <main className="min-h-screen bg-white px-6 py-20">
