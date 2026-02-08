@@ -4,7 +4,8 @@ import { useParams, useRouter } from "next/navigation";
 import { useCart } from "../../context/CartContext";
 
 export default function ProductPage() {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params.id as string;
   const router = useRouter();
   const { addToCart } = useCart();
 
@@ -14,6 +15,7 @@ export default function ProductPage() {
     name: "Product Name",
     price: 0,
     img: "/placeholder.png",
+    type: "closet", // ✅ IMPORTANT
   };
 
   return (
