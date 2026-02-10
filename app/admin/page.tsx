@@ -31,13 +31,11 @@ export default function AdminPage() {
 
   // 📦 Fetch all orders
   useEffect(() => {
-    fetch("/api/admin/orders")
-      .then((res) => res.json())
-      .then((data) => {
-        setOrders(data);
-        setLoading(false);
-      });
-  }, []);
+  fetch("/api/admin/orders")
+    .then(res => res.json())
+    .then(setOrders)
+    .finally(() => setLoading(false));
+}, []);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 py-10">
