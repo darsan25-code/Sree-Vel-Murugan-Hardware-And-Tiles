@@ -7,8 +7,9 @@ export default function Home() {
     <main className="min-h-screen bg-white text-gray-800">
 
       {/* HERO – POSTER STYLE */}
-      <section id="home" className="bg-white py-20">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <section id="home" className="bg-white py-12 md:py-20">
+<div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+
 
           {/* LEFT CONTENT */}
           <div>
@@ -16,12 +17,12 @@ export default function Home() {
               🏅 Authorized Dealer
             </span>
 
-            <h1 className="text-5xl font-extrabold leading-tight mb-6">
+<h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight mb-4 md:mb-6">
               <span className="text-yellow-500">SREE VEL MURUGAN</span><br />
               <span className="text-red-700">HARDWARE & TILES</span>
             </h1>
 
-            <p className="text-lg text-gray-700 mb-4">
+<p className="text-base md:text-lg text-gray-700 mb-3 md:mb-4">
               Hardware • Tiles • Sanitaryware • Pipes & Fittings
             </p>
 
@@ -29,7 +30,7 @@ export default function Home() {
               📍 Premium Showroom in Porur, Chennai
             </p>
 
-            <div className="flex flex-col gap-4 max-w-sm">
+<div className="flex flex-col gap-4 w-full max-w-sm">
               <a
                 href="tel:7305274926"
                 className="flex justify-between items-center bg-red-600 text-white px-6 py-4 rounded-xl text-lg font-semibold shadow-lg hover:bg-red-700 transition"
@@ -51,10 +52,10 @@ export default function Home() {
           {/* RIGHT IMAGE */}
           <div className="flex justify-center">
             <img
-              src="/hero-banner.jpeg"
-              alt="Sree Vel Murugan Hardware and Tiles"
-              className="w-full max-w-md rounded-3xl shadow-2xl"
-            />
+  src="/hero-banner.jpeg"
+  className="w-full max-w-xs sm:max-w-sm md:max-w-md rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl"
+/>
+
           </div>
 
         </div>
@@ -66,7 +67,7 @@ export default function Home() {
           <p className="text-center text-gray-500 mb-8">
             Trusted brands we deal with
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8 text-center text-lg font-semibold text-gray-600">
+<div className="grid grid-cols-2 md:grid-cols-5 gap-6 md:gap-8 text-center text-sm sm:text-base md:text-lg font-semibold">
             <div>Parryware</div>
             <div>Finolex</div>
             <div>Jaguar</div>
@@ -82,7 +83,7 @@ export default function Home() {
       Shop by Category
     </h3>
 
-    <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10 justify-items-center">
+<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
       {[
         { title: "Sanitaryware", img: "/Sanitary.jpeg", slug: "sanitaryware" },
         { title: "Pipes & Fittings", img: "/pipes.png", slug: "pipes" },
@@ -154,7 +155,7 @@ export default function Home() {
   href="https://wa.me/917305274926"
   target="_blank"
   rel="noopener noreferrer"
-  className="fixed bottom-6 right-6 z-50"
+className="fixed bottom-5 right-5 md:bottom-6 md:right-6 z-50"
 >
   <img
     src="/whatsapp.png"
