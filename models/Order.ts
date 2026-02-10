@@ -9,7 +9,14 @@ const OrderSchema = new mongoose.Schema(
       city: String,
       pincode: String,
     },
-    items: Array,
+    items: [
+      {
+        id: String,
+        name: String,
+        price: Number,
+        quantity: Number,
+      },
+    ],
     total: Number,
     status: {
       type: String,

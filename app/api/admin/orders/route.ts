@@ -2,13 +2,25 @@ import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Order from "@/models/Order";
 
-export async function GET() {
+export async function POST(req: Request) {
   try {
     await connectDB();
-    const orders = await Order.find().sort({ createdAt: -1 });
-    return NextResponse.json(orders);
+
+    const body = await req.json();
+
+    const order = await Order.create({
+      customer: body.customer,
+      items: body.items,
+      total: body.total,
+      status: "Pending",
+    });
+
+    return NextResponse.json(order, { status: 201 });
   } catch (err) {
-    console.error(err);
-    return NextResponse.json([], { status: 500 });
+    console.error("ORDER CREATE ERROR:", err);
+    return NextResponse.json(
+      { error: "Order creation failed" },
+      { status: 500 }
+    );
   }
 }
