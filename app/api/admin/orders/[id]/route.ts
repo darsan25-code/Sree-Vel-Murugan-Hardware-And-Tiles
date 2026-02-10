@@ -8,7 +8,6 @@ export async function PATCH(
 ) {
   await connectDB();
 
-  // 🔥 IMPORTANT
   const { id } = await context.params;
 
   const order = await Order.findByIdAndUpdate(
@@ -16,13 +15,6 @@ export async function PATCH(
     { status: "Delivered" },
     { new: true }
   );
-
-  if (!order) {
-    return NextResponse.json(
-      { error: "Order not found" },
-      { status: 404 }
-    );
-  }
 
   return NextResponse.json(order);
 }
