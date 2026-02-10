@@ -2,64 +2,37 @@ import { NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Order from "@/models/Order";
 
-// 📦 CREATE ORDER (Checkout → Place Order)
+// 📥 CREATE ORDER
 export async function POST(req: Request) {
-  try {
-    await connectDB();
+  await connectDB();
+  const body = await req.json();
 
-    const body = await req.json();
+  const order = await Order.create({
+    ...body,
+    status: "Pending",
+    createdAt: new Date(),
+  });
 
-    if (!body.customer || !body.items || !body.total) {
-      return NextResponse.json(
-        { error: "Invalid order data" },
-        { status: 400 }
-      );
-    }
-
-    const order = await Order.create({
-      customer: body.customer,
-      items: body.items,
-      total: body.total,
-      status: "Pending",
-    });
-
-    return NextResponse.json(order, { status: 201 });
-  } catch (error: any) {
-    console.error("ORDER CREATE ERROR:", error.message);
-
-    return NextResponse.json(
-      { error: "Order creation failed" },
-      { status: 500 }
-    );
-  }
+  return NextResponse.json(order, { status: 201 });
 }
 
-// 📄 GET ORDERS (Customer – phone based)
+// 📤 GET ORDERS
 export async function GET(req: Request) {
-  try {
-    await connectDB();
+  await connectDB();
 
-    const { searchParams } = new URL(req.url);
-    const phone = searchParams.get("phone");
+  const { searchParams } = new URL(req.url);
+  const phone = searchParams.get("phone");
 
-    if (!phone) {
-      return NextResponse.json(
-        { error: "Phone number required" },
-        { status: 400 }
-      );
-    }
-
-    const orders = await Order.find({
-      "customer.phone": phone,
-    }).sort({ createdAt: -1 });
-
+  // 🧑‍💼 ADMIN → all orders
+  if (!phone) {
+    const orders = await Order.find().sort({ createdAt: -1 });
     return NextResponse.json(orders);
-  } catch (error: any) {
-    console.error("ORDER FETCH ERROR:", error.message);
-
-    return NextResponse.json(
-      { error: "Failed to fetch orders" },
-      { status: 500 }
-    );
   }
+
+  // 👤 CUSTOMER → phone based
+  const orders = await Order.find({
+    "customer.phone": phone,
+  }).sort({ createdAt: -1 });
+
+  return NextResponse.json(orders);
 }

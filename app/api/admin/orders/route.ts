@@ -8,18 +8,13 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
-    const order = await Order.create({
-      customer: body.customer,
-      items: body.items,
-      total: body.total,
-      status: "Pending",
-    });
+    const order = await Order.create(body);
 
     return NextResponse.json(order, { status: 201 });
   } catch (err) {
     console.error("ORDER CREATE ERROR:", err);
     return NextResponse.json(
-      { error: "Order creation failed" },
+      { error: "Order failed" },
       { status: 500 }
     );
   }

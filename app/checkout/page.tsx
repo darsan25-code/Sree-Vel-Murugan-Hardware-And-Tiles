@@ -38,14 +38,15 @@ const router = useRouter();
 
   try {
     const res = await fetch("/api/orders", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        customer: form,
-        items: cartItems,
-        total,
-      }),
-    });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    customer: form,
+    items: cartItems,
+    total,
+  }),
+});
+
 
     if (!res.ok) throw new Error("Order failed");
 
