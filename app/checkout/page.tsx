@@ -47,12 +47,13 @@ const router = useRouter();
       }),
     });
 
-    const data = await res.json(); // 👈 VERY IMPORTANT
+    const data = await res.json();
 
-    if (res.status !== 201) {
-      console.error("Order API error:", data);
-      throw new Error("Order failed");
-    }
+if (!res.ok) {
+  console.error(data);
+  throw new Error(data?.error || "Order failed");
+}
+
 
     clearCart();
     router.push("/order-success");

@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Order from "@/models/Order";
 
 export async function PATCH(
-  req: Request,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
@@ -25,10 +26,10 @@ export async function PATCH(
     }
 
     return NextResponse.json(order);
-  } catch (error) {
-    console.error("PATCH ERROR:", error);
+  } catch (err) {
+    console.error("PATCH ORDER ERROR:", err);
     return NextResponse.json(
-      { error: "Failed to update order" },
+      { error: "Update failed" },
       { status: 500 }
     );
   }
