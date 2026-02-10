@@ -1,25 +1,27 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import connectDB from "@/lib/mongodb";
 import Order from "@/models/Order";
 
 export async function PATCH(
-  req: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
 
+    const { id } = await context.params; // 🔥 THIS IS THE FIX
+
     const order = await Order.findByIdAndUpdate(
-      params.id,
+      id,
       { status: "Delivered" },
       { new: true }
     );
 
     return NextResponse.json(order);
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error("ORDER STATUS UPDATE ERROR:", error);
     return NextResponse.json(
-      { error: "Update failed" },
+      { error: "Failed to update order" },
       { status: 500 }
     );
   }
