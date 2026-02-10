@@ -4,12 +4,12 @@ import Order from "@/models/Order";
 
 export async function PATCH(
   req: Request,
-  context: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
 
-    const { id } = await context.params;
+    const { id } = await params;
 
     const order = await Order.findByIdAndUpdate(
       id,
@@ -17,11 +17,18 @@ export async function PATCH(
       { new: true }
     );
 
+    if (!order) {
+      return NextResponse.json(
+        { error: "Order not found" },
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json(order);
-  } catch (err) {
-    console.error("PATCH ERROR:", err);
+  } catch (error) {
+    console.error("PATCH ERROR:", error);
     return NextResponse.json(
-      { error: "Update failed" },
+      { error: "Failed to update order" },
       { status: 500 }
     );
   }
