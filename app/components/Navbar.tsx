@@ -16,10 +16,23 @@ export default function Navbar() {
 
         {/* DESKTOP NAV */}
         <nav className="hidden md:flex items-center gap-6 font-medium text-gray-700">
-          <Link href="/" className="hover:text-blue-600">Home</Link>
-          <Link href="/shop" className="hover:text-blue-600">Shop</Link>
-          <Link href="/categories" className="hover:text-blue-600">Categories</Link>
-          <Link href="/contact" className="hover:text-blue-600">Contact</Link>
+          <Link href="/" className="hover:text-blue-600">
+  Home
+</Link>
+
+<Link href="/#categories" scroll={true} className="hover:text-blue-600">
+  Shop
+</Link>
+
+<Link href="/#categories" scroll={true} className="hover:text-blue-600">
+  Categories
+</Link>
+
+<Link href="/#contact" scroll={true} className="hover:text-blue-600">
+  Contact
+</Link>
+
+
 
           <Link
             href="/cart"

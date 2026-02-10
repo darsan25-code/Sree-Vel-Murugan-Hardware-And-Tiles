@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useCart } from "../../context/CartContext";
+import { useEffect } from "react";
 
 /* ---------------- PRODUCTS DATA ---------------- */
 const PRODUCTS: Record<string, any[]> = {
@@ -500,6 +501,10 @@ export default function CategoryPage() {
  const params = useParams();
 const slug =
   typeof params.slug === "string" ? params.slug : params.slug?.[0] ?? "";
+  useEffect(() => {
+  // force page to start at absolute top
+  window.scrollTo(0, 0);
+}, [slug]);
 
   const router = useRouter();
 const { addToCart, cartItems } = useCart();
