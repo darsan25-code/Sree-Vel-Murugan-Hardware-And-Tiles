@@ -38,21 +38,26 @@ const router = useRouter();
 
   try {
     const res = await fetch("/api/orders", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    customer: form,
-    items: cartItems,
-    total,
-  }),
-});
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        customer: form,
+        items: cartItems,
+        total,
+      }),
+    });
 
+    const data = await res.json(); // 👈 VERY IMPORTANT
 
-    if (!res.ok) throw new Error("Order failed");
+    if (res.status !== 201) {
+      console.error("Order API error:", data);
+      throw new Error("Order failed");
+    }
 
-    clearCart();                // 🧹 clear cart
-    router.push("/order-success"); // ✅ redirect
+    clearCart();
+    router.push("/order-success");
   } catch (err) {
+    console.error(err);
     alert("Order failed ❌");
   }
 };
