@@ -601,7 +601,10 @@ if (activeType === "urinal") {
 
       {/* ================= TOP BAR ================= */}
       <div className="bg-gradient-to-br from-black via-gray-900 to-black py-10">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+<div className="max-w-7xl mx-auto px-4 md:px-6
+                flex flex-col sm:flex-row
+                gap-4 sm:gap-0
+                justify-between items-center">
 
           {/* LEFT : BACK */}
           <button
@@ -638,7 +641,8 @@ if (activeType === "urinal") {
 
         {/* TITLE */}
         <div className="text-center mt-10">
-          <h1 className="text-5xl font-extrabold text-red-600 capitalize">
+<h1 className="text-3xl sm:text-4xl md:text-5xl
+               font-extrabold text-red-600 capitalize">
             {slug}
           </h1>
           <p className="text-gray-300 mt-4">
@@ -649,21 +653,26 @@ if (activeType === "urinal") {
 
 {/* SEARCH + FILTER */}
 <div className="max-w-7xl mx-auto px-6 mt-[-40px] mb-16">
-  <div className="flex items-center gap-4 bg-gray-700/60 backdrop-blur-lg p-4 rounded-2xl border border-white/10">
+<div className="flex flex-col md:flex-row gap-3 md:gap-4 
+                bg-gray-700/60 backdrop-blur-lg 
+                p-4 rounded-2xl border border-white/10">
     
     {/* SEARCH */}
     <input
       value={search}
       onChange={(e) => setSearch(e.target.value)}
       placeholder="Search sanitaryware products..."
-      className="flex-1 px-6 py-4 rounded-xl bg-gray-600 text-white outline-none placeholder-gray-300"
+className="w-full md:flex-1 px-4 md:px-6 py-3 md:py-4
+           rounded-xl bg-gray-600 text-white
+           outline-none placeholder-gray-300"
     />
 
     {/* PRICE FILTER */}
     <select
   value={priceFilter}
   onChange={(e) => setPriceFilter(e.target.value)}
-  className="px-6 py-4 rounded-xl bg-gray-600 text-white outline-none"
+className="w-full md:w-auto px-4 md:px-6 py-3 md:py-4
+           rounded-xl bg-gray-600 text-white outline-none"
 >
   <option value="all">All Prices</option>
 
@@ -701,7 +710,7 @@ if (activeType === "urinal") {
 </div>
 
 {/* CATEGORY TABS */}
-<div className="flex justify-center gap-4 mb-16">
+<div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16 px-4">
   <button
     onClick={() => {
       setActiveType("closet");
@@ -748,7 +757,7 @@ if (activeType === "urinal") {
 
       {/* ================= PRODUCTS ================= */}
       <section className="max-w-7xl mx-auto px-6 py-20">
-  <div className="grid md:grid-cols-3 gap-12">
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
 
 
 {filteredProducts.map((product) => (
