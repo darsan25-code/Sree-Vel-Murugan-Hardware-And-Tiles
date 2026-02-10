@@ -52,8 +52,7 @@ export default function AdminPage() {
       )}
 
       <div className="space-y-6">
-        {orders.map((order) => (
-          <div
+{Array.isArray(orders) && orders.map((order) => (          <div
             key={order._id}
             className="bg-slate-900 rounded-2xl p-6 shadow-xl"
           >

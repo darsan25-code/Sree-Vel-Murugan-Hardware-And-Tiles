@@ -6,22 +6,23 @@ export default function MyOrdersPage() {
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetch("/api/orders")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setOrders(data);
-        } else {
-          setOrders([]);
-        }
-        setLoading(false);
-      })
-      .catch(() => {
-        setOrders([]);
-        setLoading(false);
-      });
-  }, []);
+ useEffect(() => {
+  fetch("/api/orders")
+    .then((res) => res.json())
+    .then((data) => {
+      if (Array.isArray(data)) {
+        setOrders(data);
+      } else {
+        setOrders([]);   
+      }
+      setLoading(false);
+    })
+    .catch(() => {
+      setOrders([]);    
+      setLoading(false);
+    });
+}, []);
+
 
   if (loading) {
     return (
@@ -40,7 +41,7 @@ export default function MyOrdersPage() {
       )}
 
       <div className="space-y-4">
-        {orders.map((order) => (
+        {Array.isArray(orders) && orders.map((order) => (
           <div
             key={order._id}
             className="bg-slate-900 rounded-xl p-4"
