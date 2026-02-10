@@ -31,6 +31,7 @@ export default function Navbar() {
 <Link href="/#contact" scroll={true} className="hover:text-blue-600">
   Contact
 </Link>
+<Link href="/my-orders">My Orders</Link>
 
 
 
