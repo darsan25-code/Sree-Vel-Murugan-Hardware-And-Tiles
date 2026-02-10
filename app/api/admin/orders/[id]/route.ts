@@ -9,7 +9,7 @@ export async function PATCH(
   try {
     await connectDB();
 
-    const { id } = await context.params; // 👈 IMPORTANT
+    const { id } = await context.params;
 
     const order = await Order.findByIdAndUpdate(
       id,
@@ -19,7 +19,7 @@ export async function PATCH(
 
     return NextResponse.json(order);
   } catch (err) {
-    console.error(err);
+    console.error("PATCH ERROR:", err);
     return NextResponse.json(
       { error: "Update failed" },
       { status: 500 }
