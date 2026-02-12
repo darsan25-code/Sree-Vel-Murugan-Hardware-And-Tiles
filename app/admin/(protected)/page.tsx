@@ -61,6 +61,19 @@ fetch("/api/admin/orders")
       setSearching(false);
     }, 400);
   };
+const markAsShipped = async (id: string) => {
+  await fetch(`/api/orders/${id}`, {
+    method: "PUT",
+  });
+  window.location.reload();
+};
+
+const deleteOrder = async (id: string) => {
+  await fetch(`/api/orders/${id}`, {
+    method: "DELETE",
+  });
+  window.location.reload();
+};
 
   if (loading) {
     return (
@@ -102,6 +115,15 @@ fetch("/api/admin/orders")
             key={order._id}
             className="bg-slate-900 rounded-2xl p-6 shadow-lg"
           >
+            <div className="text-right">
+  <p className="text-red-500 font-bold text-xl">
+    ₹{order.total}
+  </p>
+  <p className="text-yellow-400">
+    {order.status}
+  </p>
+</div>
+
             <div className="flex justify-between">
               <div>
                 <p className="font-semibold text-lg">
