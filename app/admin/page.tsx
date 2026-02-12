@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Order = {
   _id: string;
@@ -18,31 +19,49 @@ type Order = {
 };
 
 export default function AdminPage() {
+  const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
+  const [authorized, setAuthorized] = useState(false);
 
+  // 🔐 LOGIN PROTECTION
   useEffect(() => {
+    const hasToken = document.cookie.includes("admin_token");
+
+    if (!hasToken) {
+      router.push("/admin/login");
+    } else {
+      setAuthorized(true);
+    }
+  }, [router]);
+
+  // 📦 FETCH ORDERS ONLY IF AUTHORIZED
+  useEffect(() => {
+    if (!authorized) return;
+
     fetch("/api/orders")
       .then((res) => res.json())
       .then((data) => {
-        setOrders(data);
+        if (Array.isArray(data)) {
+          setOrders(data);
+        } else {
+          setOrders([]);
+        }
         setLoading(false);
       })
       .catch(() => setLoading(false));
-  }, []);
+  }, [authorized]);
 
-  if (loading) {
+  if (!authorized || loading) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center text-white">
-        Loading orders...
+        Loading...
       </div>
     );
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black
-                     text-white px-4 md:px-10 py-10">
-
+    <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white px-4 md:px-10 py-10">
       <h1 className="text-3xl md:text-4xl font-extrabold mb-8">
         🧑‍💼 Admin – Orders
       </h1>
@@ -52,7 +71,8 @@ export default function AdminPage() {
       )}
 
       <div className="space-y-6">
-{Array.isArray(orders) && orders.map((order) => (          <div
+        {orders.map((order) => (
+          <div
             key={order._id}
             className="bg-slate-900 rounded-2xl p-6 shadow-xl"
           >
@@ -97,7 +117,6 @@ export default function AdminPage() {
           </div>
         ))}
       </div>
-
     </main>
   );
 }
