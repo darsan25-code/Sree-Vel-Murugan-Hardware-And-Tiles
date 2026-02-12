@@ -89,9 +89,9 @@ export default function Home() {
         { title: "Pipes & Fittings", img: "/pipes.png", slug: "pipes" },
         { title: "Tiles", img: "/tiles.jpeg", slug: "tiles" },
         {
-          title: "Bathroom Accessories",
-          img: "/BathroomAccessories.png",
-          slug: "bathroom-accessories",
+          title: "Tap Collections",
+          img: "/Tapcollections.jpeg",
+          slug: "Tap-collections",
         },
       ].map((cat, i) => (
         <Link href={`/category/${cat.slug}`} key={i}>
