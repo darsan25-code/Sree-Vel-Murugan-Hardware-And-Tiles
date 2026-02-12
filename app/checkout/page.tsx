@@ -49,19 +49,23 @@ const router = useRouter();
 
     const data = await res.json();
 
-if (!res.ok) {
-  console.error(data);
-  throw new Error(data?.error || "Order failed");
-}
+    if (!res.ok) {
+      console.error(data);
+      throw new Error(data?.error || "Order failed");
+    }
 
+    // 🔐 SAVE CUSTOMER PHONE HERE
+    localStorage.setItem("customer_phone", form.phone);
 
     clearCart();
+
     router.push("/order-success");
   } catch (err) {
     console.error(err);
     alert("Order failed ❌");
   }
 };
+
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
