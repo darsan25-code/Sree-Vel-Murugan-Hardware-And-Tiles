@@ -19,23 +19,30 @@ export default function Navbar() {
     setOpen(false);
   };
 
+  const linkStyle =
+    "text-gray-800 hover:text-red-600 font-medium transition";
+
   return (
-    <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
+    <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center relative">
       
+      {/* Logo */}
       <Link href="/" className="text-blue-600 font-bold text-lg">
         Sree Vel Murugan Hardware & Tiles
       </Link>
 
-      {/* Desktop */}
+      {/* Desktop Menu */}
       <div className="hidden md:flex gap-6 items-center">
-        <Link href="/">Home</Link>
-        <button onClick={handleCategoryClick}>Categories</button>
-        <Link href="/shop">Shop</Link>
-        <Link href="/contact">Contact</Link>
-        <Link href="/my-orders">My Orders</Link>
+        <Link href="/" className={linkStyle}>Home</Link>
+        <button onClick={handleCategoryClick} className={linkStyle}>
+          Categories
+        </button>
+        <Link href="/shop" className={linkStyle}>Shop</Link>
+        <Link href="/contact" className={linkStyle}>Contact</Link>
+        <Link href="/my-orders" className={linkStyle}>My Orders</Link>
+
         <Link
           href="/cart"
-          className="bg-red-600 text-white px-4 py-2 rounded-full"
+          className="bg-red-600 text-white px-5 py-2 rounded-full hover:bg-red-700 transition"
         >
           Cart
         </Link>
@@ -44,19 +51,36 @@ export default function Navbar() {
       {/* Mobile Toggle */}
       <button
         onClick={() => setOpen(!open)}
-        className="md:hidden text-2xl"
+        className="md:hidden text-gray-800 text-2xl"
       >
         ☰
       </button>
 
       {/* Mobile Menu */}
       {open && (
-        <div className="absolute top-16 left-0 w-full bg-white shadow-lg flex flex-col items-center gap-6 py-6 md:hidden">
-          <Link href="/" onClick={() => setOpen(false)}>Home</Link>
-          <button onClick={handleCategoryClick}>Categories</button>
-          <Link href="/shop" onClick={() => setOpen(false)}>Shop</Link>
-          <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
-          <Link href="/my-orders" onClick={() => setOpen(false)}>My Orders</Link>
+        <div className="absolute top-16 left-0 w-full bg-white shadow-lg 
+                        flex flex-col items-center gap-6 py-6 md:hidden">
+
+          <Link href="/" className={linkStyle} onClick={() => setOpen(false)}>
+            Home
+          </Link>
+
+          <button onClick={handleCategoryClick} className={linkStyle}>
+            Categories
+          </button>
+
+          <Link href="/shop" className={linkStyle} onClick={() => setOpen(false)}>
+            Shop
+          </Link>
+
+          <Link href="/contact" className={linkStyle} onClick={() => setOpen(false)}>
+            Contact
+          </Link>
+
+          <Link href="/my-orders" className={linkStyle} onClick={() => setOpen(false)}>
+            My Orders
+          </Link>
+
           <Link
             href="/cart"
             className="bg-red-600 text-white px-6 py-2 rounded-full"
