@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
 
-export function middleware(req: NextRequest) {
-  console.log("🔥 MIDDLEWARE RUNNING:", req.nextUrl.pathname);
-
+export function middleware(req) {
   const token = req.cookies.get("admin_token")?.value;
 
   if (req.nextUrl.pathname.startsWith("/admin/login")) {
