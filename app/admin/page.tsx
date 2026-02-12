@@ -13,6 +13,7 @@ type Order = {
 
 export default function AdminPage() {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [search, setSearch] = useState("");
 
   const fetchOrders = async () => {
     const res = await fetch("/api/orders");
@@ -24,34 +25,30 @@ export default function AdminPage() {
     fetchOrders();
   }, []);
 
+  const deleteOrder = async (id: string) => {
+    if (!confirm("Delete this order?")) return;
+
+    await fetch(`/api/admin/orders/${id}`, {
+      method: "DELETE",
+    });
+
+    window.location.reload();
+  };
+
   const markShipped = async (id: string) => {
     await fetch(`/api/admin/orders/${id}`, {
       method: "PATCH",
     });
 
-    fetchOrders();
+    window.location.reload();
   };
 
-  const deleteOrder = async (id: string) => {
-  if (!confirm("Delete this order?")) return;
-  await fetch(`/api/admin/orders/${id}`, {
-  method: "DELETE",
-});
-
-window.location.reload();
-
-
-  const res = await fetch(`/api/admin/orders/${id}`, {
-    method: "DELETE",
-  });
-
-  if (res.ok) {
-    // remove from UI instantly
-    setOrders((prev) => prev.filter((o) => o._id !== id));
-  } else {
-    alert("Delete failed");
-  }
-};
+  // 🔍 FILTER ORDERS BASED ON SEARCH
+  const filteredOrders = orders.filter((order) =>
+    `${order.customer?.name} ${order.customer?.phone} ${order.customer?.city}`
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
 
   return (
     <main className="min-h-screen bg-black text-white p-8">
@@ -59,7 +56,20 @@ window.location.reload();
         🧑‍💼 Admin – Orders
       </h1>
 
-      {orders.map((order) => (
+      {/* 🔍 SEARCH INPUT */}
+      <input
+        type="text"
+        placeholder="Search by name, phone, city..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        className="mb-6 w-full p-3 rounded bg-slate-800"
+      />
+
+      {filteredOrders.length === 0 && (
+        <p className="text-gray-400">No matching orders found.</p>
+      )}
+
+      {filteredOrders.map((order) => (
         <div
           key={order._id}
           className="bg-slate-900 p-6 rounded-xl mb-6"
@@ -70,7 +80,10 @@ window.location.reload();
                 {order.customer?.name}
               </p>
               <p className="text-sm text-gray-400">
-                {order.customer?.phone}
+                📞 {order.customer?.phone}
+              </p>
+              <p className="text-sm text-gray-400">
+                📍 {order.customer?.city}
               </p>
             </div>
 
