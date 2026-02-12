@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
+const MONGODB_URI = process.env.MONGODB_URI!;
 
 if (!MONGODB_URI) {
-  throw new Error("MONGODB_URI not defined");
+  throw new Error("Please define MONGODB_URI");
 }
 
 let cached = (global as any).mongoose;
@@ -16,8 +16,8 @@ async function connectDB() {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI).then((mongoose) => {
-      return mongoose;
+    cached.promise = mongoose.connect(MONGODB_URI, {
+      dbName: "sreevelmurugan",   // 🔥 VERY IMPORTANT
     });
   }
 
@@ -25,4 +25,4 @@ async function connectDB() {
   return cached.conn;
 }
 
-export default connectDB; // 🔴 THIS WAS THE ISSUE
+export default connectDB;
