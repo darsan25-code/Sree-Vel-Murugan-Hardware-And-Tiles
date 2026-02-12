@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
+  console.log("🔥 MIDDLEWARE RUNNING:", req.nextUrl.pathname);
+
   const token = req.cookies.get("admin_token")?.value;
 
-  // Allow login page without token
   if (req.nextUrl.pathname.startsWith("/admin/login")) {
     return NextResponse.next();
   }
@@ -19,5 +20,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin", "/admin/:path*"],
+  matcher: ["/admin/:path*"],
 };
