@@ -58,27 +58,29 @@ export default function AdminPage() {
 
   // ✅ Mark as Shipped
   const markAsShipped = async (id: string) => {
-    await fetch(`/api/orders/${id}`, {
-      method: "PUT",
-    });
+  await fetch(`/api/admin/orders/${id}`, {
+    method: "PATCH",
+  });
 
-    setFilteredOrders((prev) =>
-      prev.map((order) =>
-        order._id === id ? { ...order, status: "Shipped" } : order
-      )
-    );
-  };
+  setFilteredOrders((prev) =>
+    prev.map((order) =>
+      order._id === id ? { ...order, status: "Shipped" } : order
+    )
+  );
+};
+
 
   // ✅ Delete Order
   const deleteOrder = async (id: string) => {
-    await fetch(`/api/orders/${id}`, {
-      method: "DELETE",
-    });
+  await fetch(`/api/admin/orders/${id}`, {
+    method: "DELETE",
+  });
 
-    setFilteredOrders((prev) =>
-      prev.filter((order) => order._id !== id)
-    );
-  };
+  setFilteredOrders((prev) =>
+    prev.filter((order) => order._id !== id)
+  );
+};
+
 
   if (loading) {
     return (
