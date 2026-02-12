@@ -1,57 +1,55 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <nav className="bg-white shadow-md px-4 py-3 flex justify-between items-center">
+      {/* Logo */}
+      <Link href="/" className="text-blue-600 font-bold text-lg">
+        Sree Vel Murugan Hardware & Tiles
+      </Link>
 
-        {/* LOGO */}
-        <Link href="/" className="text-lg md:text-xl font-bold text-blue-700 leading-tight">
-          Sree Vel Murugan
-          <br className="md:hidden" />
-          Hardware & Tiles
+      {/* Desktop Menu */}
+      <div className="hidden md:flex gap-6 items-center">
+        <Link href="/">Home</Link>
+        <Link href="/shop">Shop</Link>
+        <Link href="/category/all">Categories</Link>
+        <Link href="/contact">Contact</Link>
+        <Link href="/my-orders">My Orders</Link>
+        <Link href="/cart" className="bg-red-600 text-white px-4 py-2 rounded-full">
+          Cart
         </Link>
+      </div>
 
-        {/* DESKTOP NAV */}
-        <nav className="hidden md:flex items-center gap-6 font-medium text-gray-700">
-          <Link href="/" className="hover:text-blue-600">
-  Home
-</Link>
+      {/* Mobile Toggle Button */}
+      <button
+        onClick={() => setOpen(!open)}
+        className="md:hidden text-2xl"
+      >
+        ☰
+      </button>
 
-<Link href="/#categories" scroll={true} className="hover:text-blue-600">
-  Shop
-</Link>
-
-<Link href="/#categories" scroll={true} className="hover:text-blue-600">
-  Categories
-</Link>
-
-<Link href="/#contact" scroll={true} className="hover:text-blue-600">
-  Contact
-</Link>
-<Link href="/my-orders">My Orders</Link>
-
-
-
+      {/* Mobile Menu */}
+      {open && (
+        <div className="absolute top-16 left-0 w-full bg-white shadow-md flex flex-col items-center gap-4 py-4 md:hidden">
+          <Link href="/" onClick={() => setOpen(false)}>Home</Link>
+          <Link href="/shop" onClick={() => setOpen(false)}>Shop</Link>
+          <Link href="/category/all" onClick={() => setOpen(false)}>Categories</Link>
+          <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
+          <Link href="/my-orders" onClick={() => setOpen(false)}>My Orders</Link>
           <Link
             href="/cart"
-            className="ml-4 bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition"
+            className="bg-red-600 text-white px-4 py-2 rounded-full"
+            onClick={() => setOpen(false)}
           >
-            🛒 Cart
+            Cart
           </Link>
-        </nav>
-
-        {/* MOBILE CART */}
-        <Link
-          href="/cart"
-          className="md:hidden bg-red-600 text-white px-3 py-2 rounded-full"
-        >
-          🛒
-        </Link>
-
-      </div>
-    </header>
+        </div>
+      )}
+    </nav>
   );
 }
