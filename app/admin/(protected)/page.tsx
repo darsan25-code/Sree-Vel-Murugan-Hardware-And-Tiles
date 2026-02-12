@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 
 type Order = {
   _id: string;
-  customer: any;
+  customer: {
+    name: string;
+    phone: string;
+    address: string;
+    city: string;
+    pincode: string;
+  };
   items: any[];
   total: number;
   status: string;
@@ -13,109 +19,110 @@ type Order = {
 
 export default function AdminPage() {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [searching, setSearching] = useState(false);
 
-  const fetchOrders = async () => {
-    const res = await fetch("/api/orders");
-    const data = await res.json();
-    setOrders(data);
-  };
-
+  // 🔹 Fetch Orders
   useEffect(() => {
-    fetchOrders();
+    fetch("/api/orders")
+      .then((res) => res.json())
+      .then((data) => {
+        setOrders(data);
+        setFilteredOrders(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
 
-  const deleteOrder = async (id: string) => {
-    if (!confirm("Delete this order?")) return;
+  // 🔹 Handle Search (ENTER press)
+  const handleSearch = () => {
+    setSearching(true);
 
-    await fetch(`/api/admin/orders/${id}`, {
-      method: "DELETE",
-    });
+    setTimeout(() => {
+      if (!search.trim()) {
+        setFilteredOrders(orders);
+        setSearching(false);
+        return;
+      }
 
-    window.location.reload();
+      const filtered = orders.filter((order) =>
+        order.customer.name.toLowerCase().includes(search.toLowerCase()) ||
+        order.customer.phone.includes(search) ||
+        order.customer.city.toLowerCase().includes(search.toLowerCase())
+      );
+
+      setFilteredOrders(filtered);
+      setSearching(false);
+    }, 400); // smooth loading effect
   };
 
-  const markShipped = async (id: string) => {
-    await fetch(`/api/admin/orders/${id}`, {
-      method: "PATCH",
-    });
-
-    window.location.reload();
-  };
-
-  // 🔍 FILTER ORDERS BASED ON SEARCH
-  const filteredOrders = orders.filter((order) =>
-    `${order.customer?.name} ${order.customer?.phone} ${order.customer?.city}`
-      .toLowerCase()
-      .includes(search.toLowerCase())
-  );
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center text-white">
+        Loading orders...
+      </div>
+    );
+  }
 
   return (
-    <main className="min-h-screen bg-black text-white p-8">
-      <h1 className="text-3xl font-bold mb-6">
-        🧑‍💼 Admin – Orders
-      </h1>
+    <main className="min-h-screen bg-black text-white px-6 py-10">
+      <h1 className="text-3xl font-bold mb-6">🧑‍💼 Admin – Orders</h1>
 
-      {/* 🔍 SEARCH INPUT */}
+      {/* 🔍 Search Bar */}
       <input
         type="text"
         placeholder="Search by name, phone, city..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="mb-6 w-full p-3 rounded bg-slate-800"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSearch();
+          }
+        }}
+        className="w-full bg-slate-800 px-5 py-4 rounded-xl mb-6 outline-none"
       />
 
-      {filteredOrders.length === 0 && (
+      {searching && (
+        <p className="text-gray-400 mb-4">Searching...</p>
+      )}
+
+      {filteredOrders.length === 0 && !searching && (
         <p className="text-gray-400">No matching orders found.</p>
       )}
 
-      {filteredOrders.map((order) => (
-        <div
-          key={order._id}
-          className="bg-slate-900 p-6 rounded-xl mb-6"
-        >
-          <div className="flex justify-between">
-            <div>
-              <p className="font-bold">
-                {order.customer?.name}
-              </p>
-              <p className="text-sm text-gray-400">
-                📞 {order.customer?.phone}
-              </p>
-              <p className="text-sm text-gray-400">
-                📍 {order.customer?.city}
-              </p>
-            </div>
+      <div className="space-y-6">
+        {filteredOrders.map((order) => (
+          <div
+            key={order._id}
+            className="bg-slate-900 rounded-2xl p-6 shadow-lg"
+          >
+            <div className="flex justify-between">
+              <div>
+                <p className="font-semibold text-lg">
+                  {order.customer.name}
+                </p>
+                <p className="text-gray-400 text-sm">
+                  📞 {order.customer.phone}
+                </p>
+                <p className="text-gray-400 text-sm">
+                  📍 {order.customer.city}
+                </p>
+              </div>
 
-            <div className="text-right">
-              <p className="text-red-500 font-bold">
-                ₹{order.total}
-              </p>
-              <p className="text-yellow-400">
-                {order.status}
-              </p>
+              <div className="text-right">
+                <p className="text-red-500 font-bold text-xl">
+                  ₹{order.total}
+                </p>
+                <p className="text-yellow-400">
+                  {order.status}
+                </p>
+              </div>
             </div>
           </div>
-
-          <div className="mt-4 flex gap-3">
-            {order.status !== "Shipped" && (
-              <button
-                onClick={() => markShipped(order._id)}
-                className="bg-green-600 px-4 py-2 rounded"
-              >
-                Mark as Shipped
-              </button>
-            )}
-
-            <button
-              onClick={() => deleteOrder(order._id)}
-              className="bg-red-600 px-4 py-2 rounded"
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </main>
   );
 }
