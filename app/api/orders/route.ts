@@ -21,12 +21,9 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
-    if (!body || !body.customer || !body.items || body.items.length === 0) {
-      return NextResponse.json(
-        { error: "Invalid order data" },
-        { status: 400 }
-      );
-    }
+  console.log("BODY RECEIVED:", body);
+
+
 
     const order = await Order.create({
       customer: body.customer,
