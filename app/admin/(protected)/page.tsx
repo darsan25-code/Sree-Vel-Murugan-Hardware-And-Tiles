@@ -26,7 +26,7 @@ export default function AdminPage() {
 
   // ✅ Fetch from ADMIN route (IMPORTANT)
   useEffect(() => {
-fetch("/api/orders")
+fetch("/api/admin/orders")
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
