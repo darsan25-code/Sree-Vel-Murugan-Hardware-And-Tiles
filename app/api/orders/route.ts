@@ -33,11 +33,11 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json(order, { status: 201 });
-  } catch (err) {
-    console.error("CREATE ORDER ERROR:", err);
-    return NextResponse.json(
-      { error: "Order failed" },
-      { status: 500 }
-    );
-  }
+ } catch (err: any) {
+  console.error("CREATE ORDER ERROR FULL:", err);
+  return NextResponse.json(
+    { error: err.message || "Order failed" },
+    { status: 500 }
+  );
 }
+
