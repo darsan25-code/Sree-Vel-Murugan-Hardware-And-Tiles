@@ -24,9 +24,9 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [searching, setSearching] = useState(false);
 
-  // 🔹 Fetch Orders
+  // ✅ Fetch from ADMIN route (IMPORTANT)
   useEffect(() => {
-    fetch("/api/orders")
+    fetch("/api/admin/orders")
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -36,26 +36,30 @@ export default function AdminPage() {
       .catch(() => setLoading(false));
   }, []);
 
-  // 🔹 Handle Search (ENTER press)
+  // ✅ Search function
   const handleSearch = () => {
     setSearching(true);
 
     setTimeout(() => {
-      if (!search.trim()) {
+      if (search.trim() === "") {
         setFilteredOrders(orders);
         setSearching(false);
         return;
       }
 
       const filtered = orders.filter((order) =>
-        order.customer.name.toLowerCase().includes(search.toLowerCase()) ||
-        order.customer.phone.includes(search) ||
-        order.customer.city.toLowerCase().includes(search.toLowerCase())
+        order.customer?.name
+          ?.toLowerCase()
+          .includes(search.toLowerCase()) ||
+        order.customer?.phone?.includes(search) ||
+        order.customer?.city
+          ?.toLowerCase()
+          .includes(search.toLowerCase())
       );
 
       setFilteredOrders(filtered);
       setSearching(false);
-    }, 400); // smooth loading effect
+    }, 400);
   };
 
   if (loading) {
@@ -88,7 +92,7 @@ export default function AdminPage() {
         <p className="text-gray-400 mb-4">Searching...</p>
       )}
 
-      {filteredOrders.length === 0 && !searching && (
+      {!searching && filteredOrders.length === 0 && (
         <p className="text-gray-400">No matching orders found.</p>
       )}
 
@@ -101,13 +105,13 @@ export default function AdminPage() {
             <div className="flex justify-between">
               <div>
                 <p className="font-semibold text-lg">
-                  {order.customer.name}
+                  {order.customer?.name}
                 </p>
                 <p className="text-gray-400 text-sm">
-                  📞 {order.customer.phone}
+                  📞 {order.customer?.phone}
                 </p>
                 <p className="text-gray-400 text-sm">
-                  📍 {order.customer.city}
+                  📍 {order.customer?.city}
                 </p>
               </div>
 
