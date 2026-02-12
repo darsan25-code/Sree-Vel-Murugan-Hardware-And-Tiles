@@ -9,7 +9,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleCategoryClick = () => {
+  const handleCategoriesClick = () => {
     if (pathname === "/") {
       const section = document.getElementById("categories");
       section?.scrollIntoView({ behavior: "smooth" });
@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center relative">
-      
+
       {/* Logo */}
       <Link href="/" className="text-blue-600 font-bold text-lg">
         Sree Vel Murugan Hardware & Tiles
@@ -33,12 +33,14 @@ export default function Navbar() {
       {/* Desktop Menu */}
       <div className="hidden md:flex gap-6 items-center">
         <Link href="/" className={linkStyle}>Home</Link>
-        <button onClick={handleCategoryClick} className={linkStyle}>
+
+        <button onClick={handleCategoriesClick} className={linkStyle}>
           Categories
         </button>
-        <Link href="/shop" className={linkStyle}>Shop</Link>
-        <Link href="/contact" className={linkStyle}>Contact</Link>
-        <Link href="/my-orders" className={linkStyle}>My Orders</Link>
+
+        <Link href="/my-orders" className={linkStyle}>
+          My Orders
+        </Link>
 
         <Link
           href="/cart"
@@ -65,17 +67,9 @@ export default function Navbar() {
             Home
           </Link>
 
-          <button onClick={handleCategoryClick} className={linkStyle}>
+          <button onClick={handleCategoriesClick} className={linkStyle}>
             Categories
           </button>
-
-          <Link href="/shop" className={linkStyle} onClick={() => setOpen(false)}>
-            Shop
-          </Link>
-
-          <Link href="/contact" className={linkStyle} onClick={() => setOpen(false)}>
-            Contact
-          </Link>
 
           <Link href="/my-orders" className={linkStyle} onClick={() => setOpen(false)}>
             My Orders
