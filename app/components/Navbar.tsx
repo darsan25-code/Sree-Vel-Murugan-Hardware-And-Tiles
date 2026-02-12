@@ -34,22 +34,24 @@ export default function Navbar() {
       </button>
 
       {/* Mobile Menu */}
-      {open && (
-        <div className="absolute top-16 left-0 w-full bg-white shadow-md flex flex-col items-center gap-4 py-4 md:hidden">
-          <Link href="/" onClick={() => setOpen(false)}>Home</Link>
-          <Link href="/shop" onClick={() => setOpen(false)}>Shop</Link>
-          <Link href="/category/all" onClick={() => setOpen(false)}>Categories</Link>
-          <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
-          <Link href="/my-orders" onClick={() => setOpen(false)}>My Orders</Link>
-          <Link
-            href="/cart"
-            className="bg-red-600 text-white px-4 py-2 rounded-full"
-            onClick={() => setOpen(false)}
-          >
-            Cart
-          </Link>
-        </div>
-      )}
+     {open && (
+  <div className="absolute top-16 left-0 w-full bg-white shadow-lg 
+                  flex flex-col items-center gap-6 py-6 
+                  md:hidden text-gray-800 text-lg font-medium">
+    <Link href="/" onClick={() => setOpen(false)}>Home</Link>
+    <Link href="/shop" onClick={() => setOpen(false)}>Shop</Link>
+    <Link href="/category/all" onClick={() => setOpen(false)}>Categories</Link>
+    <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
+    <Link href="/my-orders" onClick={() => setOpen(false)}>My Orders</Link>
+    <Link
+      href="/cart"
+      className="bg-red-600 text-white px-6 py-2 rounded-full"
+      onClick={() => setOpen(false)}
+    >
+      Cart
+    </Link>
+  </div>
+)}
     </nav>
   );
 }
