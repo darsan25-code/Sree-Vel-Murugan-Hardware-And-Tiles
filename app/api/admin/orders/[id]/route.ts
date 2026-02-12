@@ -4,13 +4,15 @@ import Order from "@/models/Order";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { id: string } }
+  context: any
 ) {
   try {
     await connectDB();
 
+    const id = context.params.id;
+
     const updated = await Order.findByIdAndUpdate(
-      params.id,
+      id,
       { status: "Shipped" },
       { new: true }
     );
@@ -26,12 +28,14 @@ export async function PATCH(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  context: any
 ) {
   try {
     await connectDB();
 
-    await Order.findByIdAndDelete(params.id);
+    const id = context.params.id;
+
+    await Order.findByIdAndDelete(id);
 
     return NextResponse.json({ success: true });
   } catch (error) {
