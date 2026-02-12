@@ -33,14 +33,25 @@ export default function AdminPage() {
   };
 
   const deleteOrder = async (id: string) => {
-    if (!confirm("Delete this order?")) return;
+  if (!confirm("Delete this order?")) return;
+  await fetch(`/api/admin/orders/${id}`, {
+  method: "DELETE",
+});
 
-    await fetch(`/api/admin/orders/${id}`, {
-      method: "DELETE",
-    });
+window.location.reload();
 
-    fetchOrders();
-  };
+
+  const res = await fetch(`/api/admin/orders/${id}`, {
+    method: "DELETE",
+  });
+
+  if (res.ok) {
+    // remove from UI instantly
+    setOrders((prev) => prev.filter((o) => o._id !== id));
+  } else {
+    alert("Delete failed");
+  }
+};
 
   return (
     <main className="min-h-screen bg-black text-white p-8">
