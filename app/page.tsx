@@ -90,7 +90,7 @@ export default function Home() {
         { title: "Tiles", img: "/tiles.jpeg", slug: "tiles" },
         {
           title: "Tap Collections",
-          img: "/Tapcollections.jpeg",
+          img: "/Tapcollections.jpg",
           slug: "Tap-collections",
         },
       ].map((cat, i) => (

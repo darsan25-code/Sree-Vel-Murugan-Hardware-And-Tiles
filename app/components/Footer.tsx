@@ -95,7 +95,7 @@ export default function Footer() {
           <ul className="space-y-3 text-sm">
             <li>• Pipes & Fittings</li>
             <li>• Floor & Wall Tiles</li>
-            <li>• Bathroom Accessories</li>
+            <li>• Tap Collections</li>
             <li>• Sanitaryware</li>
           </ul>
         </div>
