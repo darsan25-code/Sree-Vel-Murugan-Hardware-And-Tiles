@@ -113,16 +113,23 @@ export default function AdminPage() {
             <div className="flex justify-between">
               {/* LEFT SIDE */}
               <div>
-                <p className="font-semibold text-lg">
-                  {order.customer?.name}
-                </p>
-                <p className="text-gray-400 text-sm">
-                  📞 {order.customer?.phone}
-                </p>
-                <p className="text-gray-400 text-sm">
-                  📍 {order.customer?.city}
-                </p>
-              </div>
+  <p className="font-semibold text-lg">
+    {order.customer?.name}
+  </p>
+
+  <p className="text-gray-400 text-sm">
+    📞 {order.customer?.phone}
+  </p>
+
+  <p className="text-gray-400 text-sm">
+    🏠 {order.customer?.address}
+  </p>
+
+  <p className="text-gray-400 text-sm">
+    📍 {order.customer?.city} - {order.customer?.pincode}
+  </p>
+</div>
+
 
               {/* RIGHT SIDE */}
               <div className="text-right">
