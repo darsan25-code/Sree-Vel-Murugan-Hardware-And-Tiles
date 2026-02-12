@@ -22,11 +22,10 @@ export default function AdminPage() {
   const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
-  const [searching, setSearching] = useState(false);
 
-  // ✅ Fetch from ADMIN route (IMPORTANT)
+  // ✅ Fetch Orders
   useEffect(() => {
-fetch("/api/admin/orders")
+    fetch("/api/admin/orders")
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -36,18 +35,15 @@ fetch("/api/admin/orders")
       .catch(() => setLoading(false));
   }, []);
 
-  // ✅ Search function
+  // ✅ Search
   const handleSearch = () => {
-    setSearching(true);
+    if (search.trim() === "") {
+      setFilteredOrders(orders);
+      return;
+    }
 
-    setTimeout(() => {
-      if (search.trim() === "") {
-        setFilteredOrders(orders);
-        setSearching(false);
-        return;
-      }
-
-      const filtered = orders.filter((order) =>
+    const filtered = orders.filter(
+      (order) =>
         order.customer?.name
           ?.toLowerCase()
           .includes(search.toLowerCase()) ||
@@ -55,25 +51,34 @@ fetch("/api/admin/orders")
         order.customer?.city
           ?.toLowerCase()
           .includes(search.toLowerCase())
-      );
+    );
 
-      setFilteredOrders(filtered);
-      setSearching(false);
-    }, 400);
+    setFilteredOrders(filtered);
   };
-const markAsShipped = async (id: string) => {
-  await fetch(`/api/orders/${id}`, {
-    method: "PUT",
-  });
-  window.location.reload();
-};
 
-const deleteOrder = async (id: string) => {
-  await fetch(`/api/orders/${id}`, {
-    method: "DELETE",
-  });
-  window.location.reload();
-};
+  // ✅ Mark as Shipped
+  const markAsShipped = async (id: string) => {
+    await fetch(`/api/orders/${id}`, {
+      method: "PUT",
+    });
+
+    setFilteredOrders((prev) =>
+      prev.map((order) =>
+        order._id === id ? { ...order, status: "Shipped" } : order
+      )
+    );
+  };
+
+  // ✅ Delete Order
+  const deleteOrder = async (id: string) => {
+    await fetch(`/api/orders/${id}`, {
+      method: "DELETE",
+    });
+
+    setFilteredOrders((prev) =>
+      prev.filter((order) => order._id !== id)
+    );
+  };
 
   if (loading) {
     return (
@@ -85,29 +90,19 @@ const deleteOrder = async (id: string) => {
 
   return (
     <main className="min-h-screen bg-black text-white px-6 py-10">
-      <h1 className="text-3xl font-bold mb-6">🧑‍💼 Admin – Orders</h1>
+      <h1 className="text-3xl font-bold mb-6">
+        🧑‍💼 Admin – Orders
+      </h1>
 
-      {/* 🔍 Search Bar */}
+      {/* Search */}
       <input
         type="text"
         placeholder="Search by name, phone, city..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            handleSearch();
-          }
-        }}
+        onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         className="w-full bg-slate-800 px-5 py-4 rounded-xl mb-6 outline-none"
       />
-
-      {searching && (
-        <p className="text-gray-400 mb-4">Searching...</p>
-      )}
-
-      {!searching && filteredOrders.length === 0 && (
-        <p className="text-gray-400">No matching orders found.</p>
-      )}
 
       <div className="space-y-6">
         {filteredOrders.map((order) => (
@@ -115,16 +110,8 @@ const deleteOrder = async (id: string) => {
             key={order._id}
             className="bg-slate-900 rounded-2xl p-6 shadow-lg"
           >
-            <div className="text-right">
-  <p className="text-red-500 font-bold text-xl">
-    ₹{order.total}
-  </p>
-  <p className="text-yellow-400">
-    {order.status}
-  </p>
-</div>
-
             <div className="flex justify-between">
+              {/* LEFT SIDE */}
               <div>
                 <p className="font-semibold text-lg">
                   {order.customer?.name}
@@ -137,13 +124,36 @@ const deleteOrder = async (id: string) => {
                 </p>
               </div>
 
+              {/* RIGHT SIDE */}
               <div className="text-right">
                 <p className="text-red-500 font-bold text-xl">
                   ₹{order.total}
                 </p>
-                <p className="text-yellow-400">
+                <p className="text-yellow-400 mb-3">
                   {order.status}
                 </p>
+
+                <div className="flex gap-3 justify-end">
+                  {order.status === "Pending" && (
+                    <button
+                      onClick={() =>
+                        markAsShipped(order._id)
+                      }
+                      className="bg-green-600 px-4 py-2 rounded text-white text-sm"
+                    >
+                      Mark as Shipped
+                    </button>
+                  )}
+
+                  <button
+                    onClick={() =>
+                      deleteOrder(order._id)
+                    }
+                    className="bg-red-600 px-4 py-2 rounded text-white text-sm"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
           </div>
